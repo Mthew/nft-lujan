@@ -1,0 +1,5 @@
+the functions that connect to your database
+the utilities that you use to authenticate users
+the provider to send emails
+The reusable UI components not related to any domaun (ex. DropDownm Button, Text Input, etc)
+and more
