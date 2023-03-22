@@ -45,7 +45,7 @@ export default function ConnectButton() {
   });
 
   const { disconnect } = useDisconnect();
-  const label = isConnected ? "Disconnect" : "Connect Custom";
+  const label = isConnected ? "Disconnect" : "Validar Beneficios";
 
   async function onOpen() {
     setLoading(true);
@@ -62,7 +62,7 @@ export default function ConnectButton() {
   }
 
   return (
-    <button onClick={onClick} disabled={loading}>
+    <button onClick={onClick} disabled={loading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
       {loading ? "Loading..." : label}
     </button>
   );

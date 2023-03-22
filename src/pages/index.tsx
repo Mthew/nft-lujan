@@ -73,7 +73,7 @@ export default function HomePage() {
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900"
             >
-              <Web3Button icon="show" label="Validar beneficios" balance="show" />
+              <ConnectButton />
               {/* Log in <span aria-hidden="true">&rarr;</span> */}
             </a>
           </div>
@@ -170,7 +170,7 @@ export default function HomePage() {
               Estructura osea que conecta con el plano terrenal
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Web3Button icon="show" label="Validar Beneficios" balance="show" />
+              <ConnectButton />
             </div>
           </div>
         </div>
