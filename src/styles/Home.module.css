@@ -1,3 +1,46 @@
+.parallax {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parallax img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5em;
+  color: antiquewhite;
+}
+
+.info {
+  position: relative;
+  padding: 100px;
+  background: #002e3d;
+}
+
+.info {
+  font-size: 3em;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.info p {
+  font-size: 1rem;
+  color: white;
+  font-weight: 300;
+  line-height: 1.5rem;
+  padding-bottom: 20px;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -97,7 +140,7 @@
 
 .center::before,
 .center::after {
-  content: '';
+  content: "";
   left: 50%;
   position: absolute;
   filter: blur(45px);
@@ -125,7 +168,7 @@
 
 .thirteen::before,
 .thirteen::after {
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
