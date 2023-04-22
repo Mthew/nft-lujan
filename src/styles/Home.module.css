@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url(/images/home-header/cielo.png);
 }
 
 .parallax img {

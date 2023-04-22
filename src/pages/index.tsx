@@ -1,69 +1,79 @@
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image";
 import { Web3Button, Web3NetworkSwitch } from "@web3modal/react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
 import ConnectButton from "../components/ConnectButton";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-
 
 export default function HomePage() {
   const main = useRef();
 
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context((self) => {      
-      gsap.from("#mountain5center", {
+    const ctx = gsap.context((self) => {
+      gsap.from("#montana6", {
         scrollTrigger: {
           scrub: true,
-          trigger: "#mountain5center",
-          toggleActions: "restart pause reverse pause"
+          trigger: "#titulo",
+          toggleActions: "restart pause reverse pause",
         },
-        y: 40,
+        y: 80,
       });
-      gsap.from("#mountain4center", {
+      gsap.from("#monatana5", {
         scrollTrigger: {
           scrub: true,
         },
         y: 30,
       });
-      gsap.from("#mountain3rigth", {
+      gsap.from("#montana4", {
         scrollTrigger: {
           scrub: true,
         },
         x: 20,
       });
-      gsap.from("#mountain3left", {
+      gsap.from("#montana3", {
         scrollTrigger: {
           scrub: true,
         },
         x: -60,
       });
-      gsap.from("#mountain2rigth", {
+      gsap.from("#montana2", {
         scrollTrigger: {
           scrub: true,
         },
         x: 230,
-      });      
-      gsap.from("#mountain2left", {
+      });
+      gsap.from("#montana1", {
         scrollTrigger: {
           scrub: true,
         },
         x: -160,
-      });     
-      gsap.from("#rama1rigth", {
+      });
+      gsap.from("#nubes", {
         scrollTrigger: {
           scrub: true,
         },
         x: 300,
-      });  
-      gsap.from("#rama1left", {
+      });
+      gsap.from("#titulo", {
         scrollTrigger: {
-          scrub: true,
+          trigger: ".parallax",
+          pin: true, // pin the trigger element while active
+          start: "top top", // when the top of the trigger hits the top of the viewport
+          end: "+=500", // end after scrolling 500px beyond the start
+          scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+          snap: {
+            snapTo: "labels", // snap to the closest label in the timeline
+            duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+            delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+            ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
+          },
         },
-        x: -200,
-      });     
+        y: 60,
+      });
     }, main); // <- Scope!
     return () => ctx.revert(); // <- Cleanup!
   }, []);
@@ -75,41 +85,21 @@ export default function HomePage() {
         ref={main}
         className={`${styles.parallax} w-screen h-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-yellow-400 via-sky-600 to-blue-900`}
       >
-        <h1 className={styles.title} id="title">
-          LUJANS CLUB NFTs COLLECTIBLES
-        </h1>
-        <img
-          id="mountain5center"
-          src="/images/home-header/mountain5center.png"
-          alt=""
-        />
-        <img
-          id="mountain4center"
-          src="/images/home-header/mountain4center.png"
-          alt=""
-        />
-        <img
-          id="mountain3rigth"
-          src="/images/home-header/mountain3rigth.png"
-          alt=""
-        />
-        <img
-          id="mountain3left"
-          src="/images/home-header/mountain3left.png"
-          alt=""
-        />
-        <img
-          id="mountain2rigth"
-          src="/images/home-header/mountain2rigth.png"
-          alt=""
-        />
-        <img
-          id="mountain2left"
-          src="/images/home-header/mountain2left.png"
-          alt=""
-        />
-        <img id="rama1rigth" src="/images/home-header/rama1rigth.png" alt="" />
-        <img id="rama1left" src="/images/home-header/rama1left.png" alt="" />
+        <img id="montana6" src="/images/home-header/montanas-6.png" alt="" />
+        <img id="montana5" src="/images/home-header/montanas-5.png" alt="" />
+        <img id="nubes2" src="/images/home-header/nubes-2.png" alt="" />
+        <img id="titulo" src="/images/home-header/titulo.png" alt="" />
+        <img id="montana4" src="/images/home-header/montanas-4.png" alt="" />
+        <img id="montana3" src="/images/home-header/montanas-3.png" alt="" />
+        <img id="nft1" src="/images/home-header/nft1.png" alt="" />
+        <img id="nft2" src="/images/home-header/nft2.png" alt="" />
+        <img id="nft3" src="/images/home-header/nft3.png" alt="" />
+        <img id="nft4" src="/images/home-header/nft4.png" alt="" />
+        <img id="montana2" src="/images/home-header/montanas-2.png" alt="" />
+        <img id="montana1" src="/images/home-header/montanas-1.png" alt="" />
+        <img id="nubes1" src="/images/home-header/nubes-1.png" alt="" />
+        <img id="avion" src="/images/home-header/avion-2.png" alt="" />
+        <img id="pajaros" src="/images/home-header/pajaros.png" alt="" />
       </section>
       <section className={styles.info}>
         <h2>Descripcion de la collecion</h2>
