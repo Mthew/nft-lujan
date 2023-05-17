@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useWeb3Modal } from "@web3modal/react";
 import { useAccount, useDisconnect, useContractRead } from "wagmi";
-
 import { useRouter } from "next/router";
+
+import { Button } from "../ui";
 
 // import esqueletronABI from "../../lib/abi/esqueleton";
 
@@ -62,8 +63,8 @@ export default function ConnectButton() {
   }
 
   return (
-    <button onClick={onClick} disabled={loading} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <Button onClick={onClick} loading={loading}>
       {loading ? "Loading..." : label}
-    </button>
+    </Button>
   );
 }

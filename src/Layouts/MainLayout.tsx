@@ -7,7 +7,7 @@ type MainLayoutProps = {
 
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="md:container md:mx-auto">
+    <div className="">
       <Header />
       <section>{children}</section>
     </div>

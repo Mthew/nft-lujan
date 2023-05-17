@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, FC } from "react";
+import NextLink from "next/link";
+import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
 
 import ConnectButton from "../ConnectButton";
-// import { Dialog } from '@headlessui/react'
+import { Logo } from "../ui";
+
+interface Props {}
 
 const navigation = [
   { name: "Instagram", href: "#" },
@@ -10,94 +14,122 @@ const navigation = [
   { name: "OpenSea", href: "#" },
 ];
 
-export default function Header({}) {
+const Header: FC<Props> = ({}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
-      <nav
-        className="flex items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
+    <header className="fixed top-0 inset-x-0 z-50 bg-white-10">
+      <Navbar
+        css={{
+          $$navbarBackgroundColor: "transparent",
+          $$navbarBlurBackgroundColor: "transparent",
+          $$navbarBlur: "0px"
+        }}
+        disableBlur
+        isBordered
+        variant="sticky"
       >
-        <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="/LOGO-NFT.png" alt="" />
-          </a>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            {/* <Bars3Icon className="h-6 w-6" aria-hidden="true" /> */}
-          </button>
-        </div>
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              {item.name}
-            </a>
+        <Navbar.Toggle showIn="xs" />
+        <Navbar.Brand
+          css={{
+            "@xs": {
+              w: "12%",
+            },
+          }}
+        >
+          <Logo />
+        </Navbar.Brand>
+        <Navbar.Content
+          enableCursorHighlight
+          activeColor="secondary"
+          hideIn="xs"
+          variant="highlight-rounded"
+        >
+          {navigation.map((item, i) => (
+            <NextLink href={item.href}>
+              <Navbar.Link key={i}>{item.name}</Navbar.Link>
+            </NextLink>
           ))}
-        </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+        </Navbar.Content>
+        <Navbar.Content
+          css={{
+            "@xs": {
+              w: "12%",
+              jc: "flex-end",
+            },
+          }}
+        >
+          <Navbar.Item>
             <ConnectButton />
-            {/* Log in <span aria-hidden="true">&rarr;</span> */}
-          </a>
-        </div>
-      </nav>
-      {/* <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-          <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
+          </Navbar.Item>
+          {/* <Dropdown placement="bottom-right">
+            <Navbar.Item>
+              <Dropdown.Trigger>
+                <Avatar
+                  bordered
+                  as="button"
+                  color="secondary"
+                  size="md"
+                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                />
+              </Dropdown.Trigger>
+            </Navbar.Item>
+            <Dropdown.Menu
+              aria-label="User menu actions"
+              color="secondary"
+              onAction={(actionKey) => console.log({ actionKey })}
             >
-              <span className="sr-only">Close menu</span>
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-              <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              <Dropdown.Item key="profile" css={{ height: "$18" }}>
+                <Text b color="inherit" css={{ d: "flex" }}>
+                  Signed in as
+                </Text>
+                <Text b color="inherit" css={{ d: "flex" }}>
+                  zoey@example.com
+                </Text>
+              </Dropdown.Item>
+              <Dropdown.Item key="settings" withDivider>
+                My Settings
+              </Dropdown.Item>
+              <Dropdown.Item key="team_settings">Team Settings</Dropdown.Item>
+              <Dropdown.Item key="analytics" withDivider>
+                Analytics
+              </Dropdown.Item>
+              <Dropdown.Item key="system">System</Dropdown.Item>
+              <Dropdown.Item key="configurations">Configurations</Dropdown.Item>
+              <Dropdown.Item key="help_and_feedback" withDivider>
+                Help & Feedback
+              </Dropdown.Item>
+              <Dropdown.Item key="logout" withDivider color="error">
+                Log Out
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
+        </Navbar.Content>
+        <Navbar.Collapse>
+          {navigation.map((item, index) => (
+            <Navbar.CollapseItem
+              key={item.name}
+              activeColor="secondary"
+              isActive={index === 2}
+            >
+              <NextLink href={item.href}>
+                <Link
+                  color="inherit"
+                  css={{
+                    minWidth: "100%",
+                  }}
                 >
-                  Log in
-                </a>
-              </div>
-            </div>
-          </div>
-        </Dialog.Panel>
-      </Dialog> */}
+                  {item.name}
+                </Link>
+              </NextLink>
+            </Navbar.CollapseItem>
+          ))}
+          <Navbar.CollapseItem>
+            <ConnectButton />
+          </Navbar.CollapseItem>
+        </Navbar.Collapse>
+      </Navbar>
     </header>
   );
 };
+
+export default Header;
