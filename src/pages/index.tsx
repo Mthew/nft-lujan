@@ -1,167 +1,163 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { Web3Button, Web3NetworkSwitch } from "@web3modal/react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { Parallax, ParallaxLayer, IParallax } from "@react-spring/Parallax";
 
-import ConnectButton from "../components/ConnectButton";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import { Countdown } from "@/components/ui";
 
-export default function HomePage() {
-  const main = useRef();
+const url = (name: string, wrap = false) =>
+  `${wrap ? "url(" : ""}/images/home/${name}.png${wrap ? ")" : ""}`;
 
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const ctx = gsap.context((self) => {
-      gsap.from("#montana6", {
-        scrollTrigger: {
-          scrub: true,
-          trigger: "#titulo",
-          toggleActions: "restart pause reverse pause",
-        },
-        y: 80,
-      });
-      gsap.from("#monatana5", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        y: 30,
-      });
-      gsap.from("#montana4", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 20,
-      });
-      gsap.from("#montana3", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: -60,
-      });
-      gsap.from("#montana2", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 230,
-      });
-      gsap.from("#montana1", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: -160,
-      });
-      gsap.from("#nubes", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 300,
-      });
-      gsap.from("#titulo", {
-        scrollTrigger: {
-          trigger: ".nextui-navbar-container",
-          // pin: true, // pin the trigger element while active
-          start: "top top", // when the top of the trigger hits the top of the viewport
-          end: "+=1000", // end after scrolling 500px beyond the start
-          scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-          snap: {
-            snapTo: "labels", // snap to the closest label in the timeline
-            duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-            delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
-            ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
-          },
-        },
-        y: 60,
-      });
-    }, main); // <- Scope!
-    return () => ctx.revert(); // <- Cleanup!
-  }, []);
+const center = {
+  display: "flex",
+  justifyContent: "center",
+};
 
+const Home = () => {
+  const parallax = useRef<IParallax>(null!);
   return (
-    <>
-      <section
-        //@ts-ignore
-        ref={main}
-        className={`${styles.parallax} w-screen h-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-yellow-400 via-sky-600 to-blue-900`}
+    <section className="w-screen h-screen">
+      <Parallax
+        ref={parallax}
+        pages={1.47}
+        style={{ top: 0, left: 0, background: "#235154" }}
       >
-        <img
-          id="montana6"
-          className={styles.montana6}
-          src="/images/home-header/montanas-6.png"
-          alt=""
+        <ParallaxLayer
+          offset={0}
+          speed={1}
+          className="bg-[url(/images/home-header/fondo.jpg)] bg-top bg-no-repeat sm:bg-cover"
         />
-        <img id="montana5" src="/images/home-header/montanas-5.png" alt="" />
-        <img id="nubes2" src="/images/home-header/nubes-2.png" alt="" />
-        <img
-          id="titulo"
-          className={styles.titulo}
-          src="/images/home-header/titulo.png"
-          alt=""
-        />
-        <img id="montana4" src="/images/home-header/montanas-4.png" alt="" />
-        <img id="montana3" src="/images/home-header/montanas-3.png" alt="" />
-        <img id="nft1" src="/images/home-header/nft1.png" alt="" />
-        <img id="nft2" src="/images/home-header/nft2.png" alt="" />
-        <img id="nft3" src="/images/home-header/nft3.png" alt="" />
-        <img id="nft4" src="/images/home-header/nft4.png" alt="" />
-        <img id="montana2" src="/images/home-header/montanas-2.png" alt="" />
-        <img id="montana1" src="/images/home-header/montanas-1.png" alt="" />
-        <img id="nubes1" src="/images/home-header/nubes-1.png" alt="" />
-        <img id="avion" src="/images/home-header/avion-2.png" alt="" />
-        <img id="pajaros" src="/images/home-header/pajaros.png" alt="" />
-      </section>
-      <section className={styles.info}>
-        <h2>Descripcion de la collecion</h2>
-        <p>
-          Lujan's Club te ofrece una colección exclusiva de 9,999 NFTs que
-          fusionan la vida, la tecnología y el arte, mediante un recorrido por
-          las calles de Medellín. Para ello hemos colaborado con una amplia
-          variedad de aliados, así tendrás acceso a descuentos especiales en
-          diferentes lugares y experiencias, para que disfrutes al máximo de tu
-          aventura en esta diversa ciudad.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-          repellat accusantium at autem praesentium voluptas, iure nihil! Fugit
-          alias tempora eos! Quod quisquam numquam cumque rem inventore dolores
-          eum voluptatibus! Quae officiis doloribus, quia repellendus nobis
-          omnis? Quae dolores exercitationem ea aliquam, in ratione sapiente
-          minus vitae adipisci similique explicabo pariatur recusandae, corrupti
-          molestiae fugiat sit natus ab, nobis magnam. Eos debitis ut laboriosam
-          laudantium earum voluptatem aut quod voluptate deleniti praesentium,
-          facilis minima, magni reprehenderit quidem voluptates voluptas numquam
-          temporibus sint eligendi accusamus voluptatibus sit quo. Quo, officiis
-          voluptas? Voluptates, nostrum eos et, consequuntur placeat modi fuga
-          repellendus tempora vitae libero, assumenda delectus cupiditate
-          tenetur repudiandae quo est accusamus optio minus iure ratione
-          perspiciatis pariatur ducimus culpa eaque? Incidunt. Impedit quasi
-          alias sequi provident ratione eaque, tempora sint suscipit pariatur.
-          Blanditiis a, sapiente accusamus dolorum harum mollitia rerum dicta,
-          eius, odio hic eaque aliquam laudantium! Expedita suscipit saepe
-          ratione.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-          repellat accusantium at autem praesentium voluptas, iure nihil! Fugit
-          alias tempora eos! Quod quisquam numquam cumque rem inventore dolores
-          eum voluptatibus! Quae officiis doloribus, quia repellendus nobis
-          omnis? Quae dolores exercitationem ea aliquam, in ratione sapiente
-          minus vitae adipisci similique explicabo pariatur recusandae, corrupti
-          molestiae fugiat sit natus ab, nobis magnam. Eos debitis ut laboriosam
-          laudantium earum voluptatem aut quod voluptate deleniti praesentium,
-          facilis minima, magni reprehenderit quidem voluptates voluptas numquam
-          temporibus sint eligendi accusamus voluptatibus sit quo. Quo, officiis
-          voluptas? Voluptates, nostrum eos et, consequuntur placeat modi fuga
-          repellendus tempora vitae libero, assumenda delectus cupiditate
-          tenetur repudiandae quo est accusamus optio minus iure ratione
-          perspiciatis pariatur ducimus culpa eaque? Incidunt. Impedit quasi
-          alias sequi provident ratione eaque, tempora sint suscipit pariatur.
-          Blanditiis a, sapiente accusamus dolorum harum mollitia rerum dicta,
-          eius, odio hic eaque aliquam laudantium! Expedita suscipit saepe
-          ratione.
-        </p>
-      </section>
-    </>
+        <ParallaxLayer
+          offset={0.7}
+          speed={0.5}
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("mountain-4-w-full")}
+            alt="mountain 4"
+            width={500}
+            height={300}
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={0.8}
+          speed={0.6}
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("mountain-3-w-full")}
+            alt="mountain 4"
+            width={500}
+            height={300}
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={0.9}
+          speed={0.7}
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("mountain-2-rigth")}
+            alt="mountain 4"
+            width={500}
+            height={300}
+            className="absolute"
+          />
+          <Image
+            src={url("mountain-2-left")}
+            alt="mountain 4"
+            width={500}
+            height={300}
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={0.2}
+          speed={-0.3}
+          style={{
+            ...center,
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("plane")}
+            alt="mountain 4"
+            width={200}
+            height={100}
+            className="absolute"
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
+          offset={0.4}
+          speed={0.2}
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("clouds-full")}
+            alt="mountain 4"
+            width={900}
+            height={50}
+            className="absolute"
+          />
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={0.3}
+          speed={1}
+        >
+
+          <h1 className="text-white text-center p-10 uppercase">Somos seres coexistiendo en una misma ilusión</h1>
+        </ParallaxLayer>
+
+        <ParallaxLayer sticky={{ start: 0, end: 1 }} speed={10} factor={1}>
+          <div className="w-screen h-screen  flex font-bold items-center justify-center">
+            <div className="w-2/3 py-8 text-center backdrop-blur-sm backdrop-invert bg-violet/30 border-2 border-white cursor-pointer">
+              <Countdown
+                timeTillDate="06 29 2023, 6:00 am"
+                timeFormat="MM DD YYYY, h:mm a"
+                title={<>
+                <Image
+                  src={url("title")}
+                  alt="mountain 4"
+                  width={200}
+                  height={50}
+                  style={center}
+                  className="m-auto py-5"
+                />
+                <h1 className="uppercase">Gran lanzamiento</h1>
+                </>}
+              />
+            </div>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          speed={12}
+          sticky={{ start: 0.9, end: 1}}
+          factor={1}
+          style={{
+            display:"flex",
+            justifyContent: "center",
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src={url("nfts")}
+            alt="mountain 4"
+            width={900}
+            height={500}
+            className="absolute"
+          />
+        </ParallaxLayer>
+      </Parallax>
+    </section>
   );
-}
+};
+
+export default Home;

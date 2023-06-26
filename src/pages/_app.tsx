@@ -18,7 +18,6 @@ import {
   polygon,
 } from "wagmi/chains";
 
-import { MainLayout } from "@/Layouts";
 import "@/styles/globals.css";
 
 // 1. Get projectID at https://cloud.walletconnect.com
@@ -60,9 +59,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       {ready ? (
         <WagmiConfig client={wagmiClient}>
-          <MainLayout>
             <Component {...pageProps} />
-          </MainLayout>
         </WagmiConfig>
       ) : null}
 
