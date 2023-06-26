@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Image from "next/image";
-import { Parallax, ParallaxLayer, IParallax } from "@react-spring/Parallax";
+import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 
 import { Countdown } from "@/components/ui";
 
