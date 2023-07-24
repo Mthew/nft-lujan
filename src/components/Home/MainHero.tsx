@@ -2,7 +2,10 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/Hero.module.css";
+
+const url = (name: string, wrap = false) =>
+  `${wrap ? "url(" : ""}/images/home-header/${name}.png${wrap ? ")" : ""}`;
 
 export default function MainHero() {
   const main = useRef();
@@ -10,65 +13,24 @@ export default function MainHero() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context((self) => {
-      gsap.from("#montana6", {
+      const tl = gsap.timeline({
         scrollTrigger: {
-          scrub: true,
-          trigger: "#titulo",
-          toggleActions: "restart pause reverse pause",
-        },
-        y: 80,
-      });
-      gsap.from("#monatana5", {
-        scrollTrigger: {
+          trigger: ".info",
+          start: "top top",
+          end: "bottom top",
           scrub: true,
         },
-        y: 30,
       });
-      gsap.from("#montana4", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 20,
-      });
-      gsap.from("#montana3", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: -60,
-      });
-      gsap.from("#montana2", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 230,
-      });
-      gsap.from("#montana1", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: -160,
-      });
-      gsap.from("#nubes", {
-        scrollTrigger: {
-          scrub: true,
-        },
-        x: 300,
-      });
-      gsap.from("#titulo", {
-        scrollTrigger: {
-          trigger: ".nextui-navbar-container",
-          // pin: true, // pin the trigger element while active
-          start: "top top", // when the top of the trigger hits the top of the viewport
-          end: "+=1000", // end after scrolling 500px beyond the start
-          scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-          snap: {
-            snapTo: "labels", // snap to the closest label in the timeline
-            duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
-            delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
-            ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
-          },
-        },
-        y: 60,
+      gsap.utils.toArray(".parallax").forEach((layer: any) => {
+        /*Ajustar esta funcion para que reciva cualquier valor que sea compatible con scolltrigger*/
+        const depth = layer.dataset.depth;
+        const movement = -(layer.offsetHeight * depth);
+        if (layer.dataset.depthx) {
+          const x = -(layer.offsetWidth * layer.dataset.depthx);
+          tl.to(layer, { y: movement, x, ease: "none" }, 0);
+        } else {
+          tl.to(layer, { y: movement, ease: "none" }, 0);
+        }
       });
     }, main); // <- Scope!
     return () => ctx.revert(); // <- Cleanup!
@@ -76,35 +38,99 @@ export default function MainHero() {
 
   return (
     <section
-        //@ts-ignore
-        ref={main}
-        className={`${styles.parallax} w-screen h-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-yellow-400 via-sky-600 to-blue-900`}
-      >
-        <img
-          id="montana6"
-          className={styles.montana6}
-          src="/images/home-header/montanas-6.png"
-          alt=""
-        />
-        <img id="montana5" src="/images/home-header/montanas-5.png" alt="" />
-        <img id="nubes2" src="/images/home-header/nubes-2.png" alt="" />
-        <img
-          id="titulo"
-          className={styles.titulo}
-          src="/images/home-header/titulo.png"
-          alt=""
-        />
-        <img id="montana4" src="/images/home-header/montanas-4.png" alt="" />
-        <img id="montana3" src="/images/home-header/montanas-3.png" alt="" />
-        <img id="nft1" src="/images/home-header/nft1.png" alt="" />
-        <img id="nft2" src="/images/home-header/nft2.png" alt="" />
-        <img id="nft3" src="/images/home-header/nft3.png" alt="" />
-        <img id="nft4" src="/images/home-header/nft4.png" alt="" />
-        <img id="montana2" src="/images/home-header/montanas-2.png" alt="" />
-        <img id="montana1" src="/images/home-header/montanas-1.png" alt="" />
-        <img id="nubes1" src="/images/home-header/nubes-1.png" alt="" />
-        <img id="avion" src="/images/home-header/avion-2.png" alt="" />
-        <img id="pajaros" src="/images/home-header/pajaros.png" alt="" />
-      </section>
+      //@ts-ignore
+      ref={main}
+      id={"hero"}
+      className={`${styles.hero} w-screen h-screen bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-yellow-400 via-sky-600 to-blue-900`}
+    >
+      <div
+        id={styles.montana6}
+        className={`${styles.layer} ${styles.montana} parallax`}
+        style={{ backgroundImage: url("montanas-6", true) }}
+        data-depth="0.60"
+      ></div>
+      <div
+        id={styles.montana5}
+        className={`${styles.layer} ${styles.montana} parallax`}
+        style={{ backgroundImage: url("montanas-5", true) }}
+        data-depth="0.60"
+      ></div>
+      <div
+        id={styles.titulo}
+        className={`${styles.layer} parallax`}
+        style={{ backgroundImage: url("titulo", true) }}
+        data-depth="0.40"
+      ></div>
+      <div
+        id={styles.montana4}
+        className={`${styles.layer} ${styles.montana} parallax`}
+        style={{ backgroundImage: url("montanas-4", true) }}
+        data-depth="0.50"
+      ></div>
+      <div
+        id={styles.montana3}
+        className={`${styles.layer} ${styles.montana} parallax`}
+        style={{ backgroundImage: url("montanas-3", true) }}
+        data-depth="0.60"
+      ></div>
+      <div
+        id={styles.nft3}
+        className={`${styles.layer} ${styles.nft} parallax`}
+        style={{ backgroundImage: url("nft3", true) }}
+      ></div>
+      <div
+        id={styles.nft4}
+        className={`${styles.layer} ${styles.nft} parallax`}
+        style={{ backgroundImage: url("nft4", true) }}
+      ></div>
+      <div
+        id={styles.nft2}
+        className={`${styles.layer} ${styles.nft} parallax`}
+        style={{ backgroundImage: url("nft2", true) }}
+      ></div>
+      <div
+        id={styles.nft1}
+        className={`${styles.layer} ${styles.nft} parallax`}
+        style={{ backgroundImage: url("nft1", true) }}
+      ></div>
+      <div
+        id={styles.montana2}
+        className={`${styles.layer} parallax`}
+        style={{ backgroundImage: url("montanas-2", true) }}
+        data-depth="0.60"
+      ></div>
+      <div
+        id={styles.montana1}
+        className={`${styles.layer} parallax`}
+        style={{ backgroundImage: url("montanas-1", true) }}
+        data-depth="0.60"
+      ></div>
+      <div
+        id={styles.avion}
+        className={`${styles.layer} parallax`}
+        style={{ backgroundImage: url("avion-2", true) }}
+        data-depth="-0.6"
+        data-depthX="0.60"
+      ></div>
+      <div
+        id={styles.nubes2}
+        className={`${styles.layer} ${styles.nubes} parallax`}
+        style={{ backgroundImage: url("nubes-2", true) }}
+        data-depth="0.30"
+      ></div>
+      <div
+        id={styles.nubes1}
+        className={`${styles.layer}  ${styles.nubes} parallax`}
+        style={{ backgroundImage: url("nubes-1", true) }}
+        data-depth="0.90"
+      ></div>
+      <div
+        id={styles.pajaros}
+        className={`${styles.layer} parallax`}
+        style={{ backgroundImage: url("pajaros", true) }}
+        data-depth="0.50"
+        data-depthX="-0.20"
+      ></div>
+    </section>
   );
 }

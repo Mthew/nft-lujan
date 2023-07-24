@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import NextLink from "next/link";
 import { Navbar, Link, Text, Avatar, Dropdown } from "@nextui-org/react";
 
@@ -15,20 +15,32 @@ const navigation = [
 ];
 
 const Header: FC<Props> = ({}) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  //Change nav color when scroll
+  const [scrolling, setScrolling] = useState(false);
+  const handleScroll: any = () => setScrolling(window.scrollY >= 90);
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-white-10">
       <Navbar
         css={{
-          $$navbarBackgroundColor: "transparent",
-          $$navbarBlurBackgroundColor: "transparent",
-          $$navbarBlur: "0px"
+          ...(scrolling
+            ? {
+              $$navbarBlurBackgroundColor: "transparent",
+            }
+            : {
+                $$navbarBackgroundColor: "transparent",
+                $$navbarBlurBackgroundColor: "transparent",
+                $$navbarBlur: "3px",
+              }),
         }}
-        disableBlur
+        disableBlur={!scrolling}
         isBordered
         variant="sticky"
       >
-        <Navbar.Toggle showIn="xs" />
         <Navbar.Brand
           css={{
             "@xs": {
@@ -51,6 +63,7 @@ const Header: FC<Props> = ({}) => {
           ))}
         </Navbar.Content>
         <Navbar.Content
+          hideIn="xs"
           css={{
             "@xs": {
               w: "12%",
@@ -104,7 +117,13 @@ const Header: FC<Props> = ({}) => {
             </Dropdown.Menu>
           </Dropdown> */}
         </Navbar.Content>
-        <Navbar.Collapse>
+        <Navbar.Toggle showIn="xs" />
+        <Navbar.Collapse
+          css={{
+            background: "transparent",
+            $$navbarListBlurBackgroundColor: "transparent",
+          }}
+        >
           {navigation.map((item, index) => (
             <Navbar.CollapseItem
               key={item.name}

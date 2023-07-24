@@ -1,15 +1,24 @@
 import React from "react";
+import Head from 'next/head'
 import { Header } from "@/components/Layout";
 
+
 type MainLayoutProps = {
+  title?: string;
   children: React.ReactNode;
 };
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children, title = "LUJAN'S CLUB" }: MainLayoutProps) {
   return (
-    <div className="container mx-auto px-4 sm:px-1 md:px-2 ">
+    <>
+    <Head>
+      <title>{title}</title>
+      <meta property="og:title" content={title} key="title" />
+    </Head>
+    <div>
       <Header />
       <section>{children}</section>
     </div>
+    </>
   );
 }

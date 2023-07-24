@@ -48,6 +48,7 @@ const wagmiClient = createClient({
 // 3. Configure modal ethereum client
 const ethereumClient = new EthereumClient(wagmiClient, chains);
 
+
 export default function App({ Component, pageProps }: AppProps) {
   const [ready, setReady] = useState(false);
 
@@ -55,11 +56,14 @@ export default function App({ Component, pageProps }: AppProps) {
     setReady(true);
   }, []);
 
+  //@ts-ignore
+  const getLayout = Component.getLayout || ((page) => page);
+
   return (
     <>
       {ready ? (
         <WagmiConfig client={wagmiClient}>
-            <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </WagmiConfig>
       ) : null}
 

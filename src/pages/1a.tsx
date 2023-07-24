@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
+
+import { MainLayout } from "@/Layouts";
 
 const url = (name: string, wrap = false) =>
   `${wrap ? "url(" : ""}/images/home/${name}.png${wrap ? ")" : ""}`;
@@ -137,7 +139,7 @@ const Home = () => {
         </ParallaxLayer>
 
         <ParallaxLayer offset={0} speed={2}>
-          <div className="bg-gradient-to-b from-neutral-900 via-neutral-900/[.5] to-neutral-900/[.0] container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
+          <div className="bg-gradient-to-b from-neutral-900/[.7] via-neutral-900/[.5] to-neutral-900/[.0] container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
             <h1 className="text-4xl font-bold leadi sm:text-5xl text-white">
               Una colección exclusiva de&nbsp;
               <span className="bg-gradient-to-r from-amber-500 to-pink-500 bg-clip-text text-transparent">
@@ -149,7 +151,7 @@ const Home = () => {
                 Medellín
               </span>
             </h1>
-            <p className="px-8 mt-8 mb-12 text-lg">
+            <p className="px-8 mt-8 mb-12 text-lg uppercase">
               Obtén descuentos especiales en diversos lugares y experiencias
               para disfrutar al máximo de esta diversa ciudad.
             </p>
@@ -282,5 +284,7 @@ const Home = () => {
     </section>
   );
 };
+
+Home.getLayout = (page: React.ReactElement) => <MainLayout>{page}</MainLayout>;
 
 export default Home;

@@ -1,0 +1,111 @@
+.hero {
+  height: var(--hero-height);
+  overflow: hidden;
+  position: relative;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(/images/home-header/cielo.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* #content {
+  background-color: $bronze;
+} */
+
+.layer {
+  background-position: bottom center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: var(--hero-height);
+  position: fixed;
+  /* z-index: -1; */
+}
+
+.hero-mobile {
+  display: none;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/272781/full_illustration.png")
+    no-repeat center bottom / cover;
+  height: 320px;
+}
+
+.first-section {
+  padding: 50px 0 20px 0;
+}
+.text-header {
+  font-size: 50px;
+  text-align: center;
+}
+
+.hero,
+.layer {
+  min-height: 800px;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .hero {
+    background-image: url(/images/home-header/fondo-mobile.jpg);
+  }
+  .nft {
+    background-size: 300%;
+  }
+  #nft1{
+    background-position: 52% bottom;
+  }
+  #nft2{
+    background-position: 43% bottom;
+  }
+  #nft3{
+    background-position: 35% bottom;
+  }
+  #nft4{
+    background-position: 60% bottom;
+  }
+  .montana {
+    background-size: 300%;
+  }
+  #montana4{
+    background-position: 70% bottom;
+  }
+  #montana2{
+    background-size: 100%;
+    background-position: 70% bottom;
+  }
+  #montana1{
+    background-size: 100%;
+    background-position: 40% bottom;
+  }
+  .nubes {
+    background-size: 200%;
+  }
+  #nubes1 {
+    background-position: 70% 20%;
+  }
+  #nubes2 {
+    background-position: 20% 80%;
+  }
+  #avion{
+    background-size: 300%;
+    background-position: 40% 50%;
+  }
+  #titulo {
+    background-size: 150%;
+    background-position: 50% 50%;
+  }
+  #pajaros {
+    background-size: 250%;
+    background-position: 70% 80%;
+  }
+}
+
+/* Tablet and Smaller Desktop */
+@media (min-width: 701px) and (max-width: 1120px) {
+  .grid {
+    grid-template-columns: repeat(2, 50%);
+  }
+}

@@ -1,8 +1,10 @@
 import styles from "@/styles/Home.module.css";
 
+import {Container} from "@/components/ui";
+
 const DescriptionCollection = () => {
   return (
-    <section className={`${styles.info} relative sm:h-screen md:h-screen `}>
+    <Container className={`${styles.info} relative sm:h-screen md:h-screen `}>
       <div className="md:flex">
         <div className="md:shrink-0">
           <img
@@ -22,7 +24,7 @@ const DescriptionCollection = () => {
           </p>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 
