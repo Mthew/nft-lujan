@@ -27,9 +27,9 @@ export default function MainHero() {
         const movement = -(layer.offsetHeight * depth);
         if (layer.dataset.depthx) {
           const x = -(layer.offsetWidth * layer.dataset.depthx);
-          tl.to(layer, { y: movement, x, ease: "none" }, 0);
+          tl.from(layer, { y: movement, x, ease: "none" }, 0);
         } else {
-          tl.to(layer, { y: movement, ease: "none" }, 0);
+          tl.from(layer, { y: movement, ease: "none" }, 0);
         }
       });
     }, main); // <- Scope!
@@ -47,31 +47,31 @@ export default function MainHero() {
         id={styles.montana6}
         className={`${styles.layer} ${styles.montana} parallax`}
         style={{ backgroundImage: url("montanas-6", true) }}
-        data-depth="0.60"
+        data-depth="-0.20"
       ></div>
       <div
         id={styles.montana5}
         className={`${styles.layer} ${styles.montana} parallax`}
         style={{ backgroundImage: url("montanas-5", true) }}
-        data-depth="0.60"
+        data-depth="-0.10"
       ></div>
       <div
         id={styles.titulo}
         className={`${styles.layer} parallax`}
         style={{ backgroundImage: url("titulo", true) }}
-        data-depth="0.40"
+        data-depth="-0.30"
       ></div>
       <div
         id={styles.montana4}
         className={`${styles.layer} ${styles.montana} parallax`}
         style={{ backgroundImage: url("montanas-4", true) }}
-        data-depth="0.50"
+        data-depth="-0.20"
       ></div>
       <div
         id={styles.montana3}
         className={`${styles.layer} ${styles.montana} parallax`}
         style={{ backgroundImage: url("montanas-3", true) }}
-        data-depth="0.60"
+        data-depth="-0.10"
       ></div>
       <div
         id={styles.nft3}
@@ -97,20 +97,20 @@ export default function MainHero() {
         id={styles.montana2}
         className={`${styles.layer} parallax`}
         style={{ backgroundImage: url("montanas-2", true) }}
-        data-depth="0.60"
+        data-depth="-0.10"
       ></div>
       <div
         id={styles.montana1}
         className={`${styles.layer} parallax`}
         style={{ backgroundImage: url("montanas-1", true) }}
-        data-depth="0.60"
+        data-depth="-0.10"
       ></div>
       <div
         id={styles.avion}
         className={`${styles.layer} parallax`}
         style={{ backgroundImage: url("avion-2", true) }}
-        data-depth="-0.6"
-        data-depthX="0.60"
+        data-depth="-0.66"
+        data-depthX="-0.10"
       ></div>
       <div
         id={styles.nubes2}
