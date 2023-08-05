@@ -8,10 +8,10 @@ import { Logo } from "../ui";
 interface Props {}
 
 const navigation = [
-  { name: "Instagram", href: "#" },
-  { name: "Twitter", href: "#" },
-  { name: "Discord", href: "#" },
-  { name: "OpenSea", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/nft.lujan/" },
+  { name: "Twitter", href: "https://twitter.com/nft.lujan" },
+  { name: "Discord", href: "https://discord.gg/NnVNUqTf" },
+  { name: "OpenSea", href: "https://opensea.io/collection/esqueletron" },
 ];
 
 const Header: FC<Props> = ({}) => {

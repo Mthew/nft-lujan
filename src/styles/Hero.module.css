@@ -46,6 +46,10 @@
   min-height: 800px;
 }
 
+#buttons {
+  
+}
+
 /* Mobile */
 @media (max-width: 700px) {
   .hero {
@@ -54,31 +58,33 @@
   .nft {
     background-size: 300%;
   }
-  #nft1{
+  #nft1 {
     background-position: 52% bottom;
   }
-  #nft2{
+  #nft2 {
     background-position: 43% bottom;
   }
-  #nft3{
+  #nft3 {
     background-position: 35% bottom;
   }
-  #nft4{
+  #nft4 {
     background-position: 60% bottom;
   }
   .montana {
     background-size: 300%;
   }
-  #montana4{
+  #montana4 {
     background-position: 70% bottom;
   }
-  #montana2{
-    background-size: 100%;
-    background-position: 70% bottom;
+  #montana2 {
+    background-size: 110%;
+    background-position: 100% bottom;
+    margin-top: 190px;
   }
-  #montana1{
-    background-size: 100%;
-    background-position: 40% bottom;
+  #montana1 {
+    background-size: 120%;
+    background-position: 10% bottom;
+    margin-top: 190px;
   }
   .nubes {
     background-size: 200%;
@@ -89,17 +95,17 @@
   #nubes2 {
     background-position: 20% 80%;
   }
-  #avion{
+  #avion {
     background-size: 300%;
-    background-position: 40% 50%;
+    background-position: 40% 100%;
   }
   #titulo {
     background-size: 150%;
     background-position: 50% 50%;
   }
   #pajaros {
-    background-size: 250%;
-    background-position: 70% 80%;
+    background-size: 180%;
+    background-position: 70% 50%;
   }
 }
 

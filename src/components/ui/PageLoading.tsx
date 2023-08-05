@@ -44,10 +44,10 @@ const PageLoading: FC<Props> = ({ time, onFinish }) => {
       </div>
       <div className="w-1/2 mt-10 bg-gray-200 rounded-full dark:bg-gray-700">
         <div
-          className="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full bg-gradient-to-r from-yellow-600 via-sky-600 to-blue-900"
+          className="text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full bg-gradient-to-r from-blue-600 via-sky-600 to-blue-900"
           style={{
             width: `${percent}%`,
-            transition: "width 1s",
+            transition: "width 2s",
           }}
           >
           {" "}
