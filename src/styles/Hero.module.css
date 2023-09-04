@@ -46,10 +46,6 @@
   min-height: 800px;
 }
 
-#buttons {
-  
-}
-
 /* Mobile */
 @media (max-width: 700px) {
   .hero {

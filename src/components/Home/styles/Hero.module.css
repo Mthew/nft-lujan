@@ -1,0 +1,60 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* .hero::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(
+    to top,
+    var(--background-color-green),
+    transparent
+  );
+  z-index: 1000;
+} */
+
+.layer {
+  background-position: bottom center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: var(--hero-height);
+  position: absolute;
+  /* transition: all 0.2s; */
+}
+
+/*Mobile*/
+@media (max-width: 700px) {
+  .layer {
+    background-size: 250%;
+  }
+  #montana6 {
+    background-size: 260%;
+  }
+  #title {
+    background-position: 50% center;
+    background-size: 150%;
+  }
+  #nubes1 {
+    background-position: 103% 34%;
+    background-size: 160%;
+  }
+  #nubes2 {
+    background-position: 3% 84%;
+    background-size: 200%;
+  }
+  #avion {
+    background-position: 35% 68%;
+    background-size: 280%;
+  }
+  #pajaros {
+    background-position: 66% 105%;
+    background-size: 280%;
+  }
+}

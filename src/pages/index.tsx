@@ -4,7 +4,7 @@ import { useState } from "react";
 import { MainLayout } from "@/Layouts";
 
 //Components
-import { MainHero, Hero2 } from "@/components/Home";
+import { MainHero, Hero2, Hero } from "@/components/Home";
 import DescriptionCollection from "@/components/Home/DescriptionCollection";
 import { PageLoading } from "@/components/ui";
 import Benefits from "@/components/Home/Benefits";
@@ -24,10 +24,8 @@ export default function HomePage() {
     <>
       {loading && <PageLoading time={10} onFinish={hideLoading} />}
       <MainLayout>
-        <MainHero />
-        <Hero2 />
-        <h1>DESCRIPTION</h1>
-        {/* <DescriptionCollection /> */}
+        <Hero />
+        <DescriptionCollection />
         <Benefits></Benefits>
         <RoadMap></RoadMap>
         <NFTGallery></NFTGallery>
